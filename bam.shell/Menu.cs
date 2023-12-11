@@ -142,8 +142,9 @@ namespace Bam.Testing.Menu
             return valueIfPropertyMissing;
         }
 
-        protected Type ContainerType { get; set; }
-        protected Type ItemAttributeType { get; set; }
+        public Type ContainerType { get; set; }
+        public Type ItemAttributeType { get; set; }
+
         protected IMenuItemProvider MenuItemProvider
         {
             get;
@@ -366,6 +367,26 @@ namespace Bam.Testing.Menu
             }
 
             return runResult;
+        }
+
+        public override bool Equals(object? obj)
+        {
+            if(obj  == null) return false;
+            if (obj is IMenu m)
+            {
+                if(m.ContainerType != null && m.ItemAttributeType != null)
+                {
+                    return m.ContainerType.Equals(this.ContainerType) && m.ItemAttributeType.Equals(this.ItemAttributeType);
+                }
+            }
+
+            return base.Equals(obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return this.ContainerType.GetHashCode() * 17 +
+                this.ItemAttributeType.GetHashCode() * 17;
         }
     }
 }

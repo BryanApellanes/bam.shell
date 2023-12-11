@@ -8,11 +8,12 @@ namespace Bam.Shell
 {
     public abstract class MenuRenderer : IMenuRenderer
     {
-        public MenuRenderer(IMenuHeaderRenderer headerRenderer, IMenuFooterRenderer footerRenderer, IMenuInputReader inputReader)
+        public MenuRenderer(IMenuHeaderRenderer headerRenderer, IMenuFooterRenderer footerRenderer, IMenuInputReader inputReader, IMenuInputCommandRenderer inputCommandRenderer)
         {
             this.HeaderRenderer = headerRenderer;
             this.FooterRenderer = footerRenderer;
             this.InputReader = inputReader;
+            this.InputCommandRenderer = inputCommandRenderer;
         }
 
         public string? Divider
@@ -23,6 +24,8 @@ namespace Bam.Shell
 
         protected IMenuHeaderRenderer HeaderRenderer { get; private set; }
         protected IMenuFooterRenderer FooterRenderer { get; private set; }
+
+        protected IMenuInputCommandRenderer InputCommandRenderer { get; private set; }
 
         protected IMenuInputReader InputReader
         {
@@ -37,5 +40,7 @@ namespace Bam.Shell
         public abstract void RenderMenu(IMenu menu, params IMenu[] otherMenus);
 
         public abstract void RenderDivider();
+
+        public abstract void RenderInputCommands(IMenu menu);
     }
 }

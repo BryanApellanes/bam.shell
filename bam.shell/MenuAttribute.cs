@@ -28,7 +28,7 @@ namespace Bam.Shell
         public string Description { get; set; }
 
         /// <summary>
-        /// Gets or sets the value used to select the associated menu.
+        /// Gets or sets the input command value used to select the associated menu.
         /// </summary>
         public string Selector { get; set; }
 

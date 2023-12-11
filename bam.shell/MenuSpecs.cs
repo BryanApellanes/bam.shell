@@ -48,7 +48,8 @@ namespace Bam.Shell
             return this;
         }
 
-        static List<MenuSpecs> menuSpecs = new List<MenuSpecs>();
+        static IEnumerable<MenuSpecs> _menuSpecs;
+        static object _menuSpecLock = new object();
         /// <summary>
         /// Gets or sets a list of <see cref="MenuSpecs" /> to load.
         /// </summary>
@@ -56,11 +57,32 @@ namespace Bam.Shell
         {
             get
             {
-                return menuSpecs;
+                return _menuSpecLock.DoubleCheckLock(ref _menuSpecs, () => LoadMenuSpecs());
             }
             set
             {
-                menuSpecs = value.ToList();
+                _menuSpecs = value.ToList();
+            }
+        }
+
+        protected static IEnumerable<MenuSpecs> LoadMenuSpecs()
+        {
+            Assembly? entryAssembly = Assembly.GetEntryAssembly();
+            if (entryAssembly != null)
+            {
+                return LoadMenuSpecs(entryAssembly);
+            }
+            return new List<MenuSpecs>();
+        }
+
+        protected static IEnumerable<MenuSpecs> LoadMenuSpecs(params Assembly[] assemblies)
+        {
+            foreach (Assembly assembly in assemblies)
+            {
+                foreach (MenuSpecs menuSpec in MenuSpecs.Scan(assembly))
+                {
+                    yield return menuSpec;
+                }
             }
         }
 

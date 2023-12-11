@@ -1,4 +1,4 @@
-﻿using Bam.CommandLine;
+﻿
 using Bam.Net;
 using Bam.Shell;
 using System;

@@ -12,5 +12,7 @@ namespace Bam.Shell
         void RenderMenu(IMenu menu, params IMenu[] otherMenus);
 
         void RenderDivider();
+
+        void RenderInputCommands(IMenu menu);
     }
 }

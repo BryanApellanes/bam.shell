@@ -1,4 +1,4 @@
-﻿using Bam.CommandLine;
+﻿using Bam.Console;
 using Bam.Net;
 using Bam.Net.Configuration;
 using Bam.Net.CoreServices;
@@ -13,9 +13,6 @@ namespace Bam.Shell.Console
         ILogger Logger { get; }
         IMenuManager MenuManager { get; }
         ServiceRegistry ServiceRegistry { get; }
-
-        event ConsoleArgsParsedDelegate ArgsParsed;
-        event ConsoleArgsParsedDelegate ArgsParsedError;
 
         void AddValidArgument(string name, string? description = null);
         void AddValidArgument(string name, bool allowNull, bool addAcronym = false, string? description = null, string? valueExample = null);

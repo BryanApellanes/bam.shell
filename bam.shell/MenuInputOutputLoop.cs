@@ -137,6 +137,7 @@ namespace Bam.Shell
                     {
                         menuInput.Input.Clear();
                         MenuItemRunResultRenderer.RenderMenuItemRunResult(menuItemRunResult);
+                        this.MenuRenderer.RenderDivider();
                     }
                 }
             }

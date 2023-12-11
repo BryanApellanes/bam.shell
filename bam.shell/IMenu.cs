@@ -15,6 +15,8 @@ namespace Bam.Shell
         event EventHandler<MenuItemRunEventArgs> MenuItemRunStarted;
         event EventHandler<MenuItemRunEventArgs> MenuItemRunComplete;
 
+        Type ContainerType { get; set; }
+        Type ItemAttributeType { get; set; }
         bool Selected { get; set; }
         string Name { get; }
         string DisplayName { get; }

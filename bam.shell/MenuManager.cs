@@ -72,18 +72,21 @@ namespace Bam.Shell
             {
                 return;
             }
-            if (MenusBySelector.ContainsKey(menu.Selector))
+            if (!MenusBySelector.ContainsValue(menu))
             {
-                DuplicateMenuSelectorSpecified?.Invoke(this, new DuplicateMenuSelectorEventArgs
+                if (MenusBySelector.ContainsKey(menu.Selector))
                 {
-                    FirstMenu = MenusBySelector[menu.Selector],
-                    SecondMenu = menu
-                });
-                MenusBySelector[menu.Selector] = menu;
-            }
-            else
-            {
-                MenusBySelector.Add(menu.Selector, menu);
+                    DuplicateMenuSelectorSpecified?.Invoke(this, new DuplicateMenuSelectorEventArgs
+                    {
+                        FirstMenu = MenusBySelector[menu.Selector],
+                        SecondMenu = menu
+                    });
+                    MenusBySelector[menu.Selector] = menu;
+                }
+                else
+                {
+                    MenusBySelector.Add(menu.Selector, menu);
+                }
             }
 
             if (!Menus.Contains(menu))
@@ -387,11 +390,6 @@ namespace Bam.Shell
             return menu != null;
         }
 
-        protected IMenu[] GetOtherMenus(IMenu menu)
-        {
-            return Menus.Where(otherMenu => otherMenu != menu).ToArray();
-        }
-
         public void RerenderMenu(IMenuInput menuInput)
         {
             this.UpdateState(CurrentMenu, menuInput);
@@ -403,12 +401,12 @@ namespace Bam.Shell
 
         protected void RerenderMenu(IMenu menu, IMenuInput menuInput)
         {
-            this.MenuRenderer.RerenderMenu(menu, menuInput, GetOtherMenus(menu));
+            this.MenuRenderer.RerenderMenu(menu, menuInput, Menus.ToArray());
         }
 
         public void RenderMenu(IMenu menu)
         {
-            this.MenuRenderer.RenderMenu(menu, GetOtherMenus(menu));
+            this.MenuRenderer.RenderMenu(menu, Menus.ToArray());
         }
 
         public IMenuItemRunResult? RunMenuItem(IMenuInput menuInput)
