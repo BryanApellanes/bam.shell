@@ -30,10 +30,21 @@ namespace Bam.Shell
             set;
         }
 
-        public Type AttributeType
+        Type _attributeType;
+        public virtual Type? AttributeType
         {
-            get;
-            set;
+            get
+            {
+                if(_attributeType == null && Attribute != null)
+                {
+                    _attributeType = Attribute.GetType();
+                }
+                return _attributeType;
+            }
+            set
+            {
+                _attributeType ??= value;
+            }
         }
 
         public string Selector
@@ -41,7 +52,7 @@ namespace Bam.Shell
             get
             {
                 string selector = string.Empty;
-                Attribute?.TryGetPropertyValue("Selector", MethodInfo.Name, out selector);
+                Attribute?.TryGetPropertyValue("Selector", MethodInfo.Name.CaseAcronym().ToLowerInvariant(), out selector);
 
                 return selector;
             }

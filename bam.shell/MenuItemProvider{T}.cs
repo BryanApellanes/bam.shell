@@ -14,23 +14,6 @@ namespace Bam.Shell
             return GetMenuItems<TAttr>(containerType).Select(item => item);
         }
 
-        public override IEnumerable<IMenuItem> GetMenuItems(object instance)
-        {
-            foreach (MenuItem<TAttr> item in GetMenuItems(instance))
-            {
-                item.Instance = instance;
-                yield return item;
-            }
-        }
-
-        public override IEnumerable<IMenuItem<TAttr>> GetMenuItems<TAttr>(Type containerType)
-        {
-            foreach (MethodInfo method in containerType.GetMethods())
-            {
-                yield return new MenuItem<TAttr>(method);
-            }
-        }
-
         public override IEnumerable<IMenuItem> GetMenuItems(Type containerType, Type itemAttributeType)
         {
             foreach(MethodInfo method in containerType.GetMethods())

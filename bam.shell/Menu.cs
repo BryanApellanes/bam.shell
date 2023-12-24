@@ -339,6 +339,12 @@ namespace Bam.Testing.Menu
             return SelectItem(SelectedItemIndex - 1);
         }
 
+        public IMenuItemRunResult RunItem(IMenuItem menuItem, IMenuInput? menuInput = null)
+        {
+            this.SelectedItem = menuItem;
+            return this.RunItem(menuInput ?? MenuInput.Empty);
+        }
+
         public IMenuItemRunResult RunItem(IMenuInput menuInput)
         {
             IMenuItemRunResult runResult = new MenuItemRunResult()

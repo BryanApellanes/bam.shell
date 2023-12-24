@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace Bam.Shell
 {
+    /// <summary>
+    /// Used to addorn a method that is included in a command menu.
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Method)]
     public class MenuItemAttribute : Attribute
     {
         public MenuItemAttribute() { }

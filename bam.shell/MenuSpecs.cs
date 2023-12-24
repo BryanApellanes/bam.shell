@@ -79,7 +79,7 @@ namespace Bam.Shell
         {
             foreach (Assembly assembly in assemblies)
             {
-                foreach (MenuSpecs menuSpec in MenuSpecs.Scan(assembly))
+                foreach (MenuSpecs menuSpec in Scan(assembly))
                 {
                     yield return menuSpec;
                 }

@@ -43,5 +43,6 @@ namespace Bam.Shell
         IMenuItem? SelectNextItem();
         IMenuItem? SelectPreviousItem();
         IMenuItemRunResult RunItem(IMenuInput menuInput);
+        IMenuItemRunResult RunItem(IMenuItem menuItem, IMenuInput? menuInput = null);
     }
 }

@@ -28,6 +28,7 @@ namespace Bam.Shell
         void RenderMenu();
         void RenderMenu(IMenu menu);
         IMenuItemRunResult? RunMenuItem(IMenuInput menuInput);
+        IMenuItemRunResult? RunMenuItem(IMenuItem menuItem, IMenuInput? menuInput = null);
         IMenuItem? GetSelectedMenuItem();
         IMenu? SelectMenu(string selector);
         IMenu? SelectMenu(IMenu menu);

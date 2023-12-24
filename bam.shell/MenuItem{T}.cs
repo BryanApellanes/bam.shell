@@ -24,10 +24,18 @@ namespace Bam.Shell
             this.Instance = instance;
         }
 
+        TAttr? _attribute;
         public new TAttr? Attribute
         {
-            get;
-            set;
+            get
+            {
+                return _attribute;
+            }
+            set
+            {
+                _attribute = value;
+                base.Attribute = value;
+            }
         }
 
         Attribute? IMenuItem.Attribute
@@ -39,6 +47,23 @@ namespace Bam.Shell
             set
             {
                 Attribute = (TAttr?)value;
+            }
+        }
+
+        Type _attributeType;
+        public override Type? AttributeType
+        {
+            get
+            {
+                if (_attributeType == null && Attribute != null)
+                {
+                    _attributeType = Attribute.GetType();
+                }
+                return _attributeType;
+            }
+            set
+            {
+                _attributeType ??= value;
             }
         }
     }

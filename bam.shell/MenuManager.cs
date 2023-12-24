@@ -179,6 +179,9 @@ namespace Bam.Shell
             }
         }
 
+        /// <summary>
+        /// Load any menus defined in MenuSpecs.LoadList and any menus found in the entry assembly.
+        /// </summary>
         public void LoadMenus()
         {
             if (MenuSpecs.LoadList.Any())
@@ -407,6 +410,17 @@ namespace Bam.Shell
         public void RenderMenu(IMenu menu)
         {
             this.MenuRenderer.RenderMenu(menu, Menus.ToArray());
+        }
+
+        public IMenuItemRunResult? RunMenuItem(IMenuItem menuItem, IMenuInput? menuInput = null)
+        {
+
+            if (CurrentMenu != null)
+            {
+                return this.CurrentMenu.RunItem(menuItem, menuInput);
+            }
+
+            return new MenuItemRunResult { Message = "No menu selected" };
         }
 
         public IMenuItemRunResult? RunMenuItem(IMenuInput menuInput)
