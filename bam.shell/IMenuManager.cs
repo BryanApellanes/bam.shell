@@ -11,12 +11,13 @@ namespace Bam.Shell
 
         IMenu? CurrentMenu { get; }
         Dictionary<string, IMenu> MenusBySelector { get; }
-
+        IList<IMenu> Menus { get; }
         void AddMenuItemSelectedHandler(EventHandler<MenuEventArgs> handler);
         void AddMenuItemSelectionChangedHandler(EventHandler<MenuEventArgs> handler);
         void AddMenuItemRunStartedHandler(EventHandler<MenuItemRunEventArgs> handler);
         void AddMenuItemRunCompleteHandler(EventHandler<MenuItemRunEventArgs> handler);
 
+        void LoadMenus();
         void LoadMenus(Assembly assembly);
         void LoadMenus(IEnumerable<MenuSpecs> menuSpecs);
 

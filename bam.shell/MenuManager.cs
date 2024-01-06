@@ -1,13 +1,6 @@
 ﻿using Bam.Net;
 using Bam.Net.Logging;
-using Bam.Shell.Console;
-using Bam.Testing.Menu;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Bam.Shell
 {
@@ -145,7 +138,7 @@ namespace Bam.Shell
         }
 
         public Dictionary<string, IMenu> MenusBySelector { get; private set; }
-        public List<IMenu> Menus { get; private set; }
+        public IList<IMenu> Menus { get; private set; }
 
         public void AddMenuItemRunStartedHandler(EventHandler<MenuItemRunEventArgs> handler)
         {
@@ -414,7 +407,6 @@ namespace Bam.Shell
 
         public IMenuItemRunResult? RunMenuItem(IMenuItem menuItem, IMenuInput? menuInput = null)
         {
-
             if (CurrentMenu != null)
             {
                 return this.CurrentMenu.RunItem(menuItem, menuInput);
