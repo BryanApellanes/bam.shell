@@ -1,11 +1,11 @@
-﻿using Bam.Net;
+﻿using Bam;
 using Bam.Shell;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static Bam.Net.Analytics.Diff;
+using static Bam.Analytics.Diff;
 
 namespace Bam.Testing.Menu
 {

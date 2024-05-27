@@ -1,4 +1,4 @@
-﻿using Bam.Net;
+﻿using Bam;
 using Bam.Testing.Menu;
 using System;
 using System.Collections.Generic;
