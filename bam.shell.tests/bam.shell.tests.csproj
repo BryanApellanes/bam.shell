@@ -14,6 +14,7 @@
     <ProjectReference Include="..\..\bam.data.schema\bam.data.schema\bam.data.schema.csproj" />
     <ProjectReference Include="..\..\bam.data\bam.data\bam.data.csproj" />
     <ProjectReference Include="..\..\bam.testing\bam.testing\bam.testing.csproj" />
+    <ProjectReference Include="..\..\bam.test\bam.test\bam.test.csproj" />
     <ProjectReference Include="..\bam.shell\bam.shell.csproj" />
   </ItemGroup>
 

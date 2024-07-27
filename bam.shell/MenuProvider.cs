@@ -1,5 +1,5 @@
 ﻿using Bam;
-using Bam.Testing.Menu;
+using Bam.Test.Menu;
 using System;
 using System.Collections.Generic;
 using System.Linq;

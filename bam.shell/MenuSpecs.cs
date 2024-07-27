@@ -49,20 +49,14 @@ namespace Bam.Shell
         }
 
         static IEnumerable<MenuSpecs> _menuSpecs;
-        static object _menuSpecLock = new object();
+        static readonly object _menuSpecLock = new object();
         /// <summary>
         /// Gets or sets a list of <see cref="MenuSpecs" /> to load.
         /// </summary>
         public static IEnumerable<MenuSpecs> LoadList
         {
-            get
-            {
-                return _menuSpecLock.DoubleCheckLock(ref _menuSpecs, () => LoadMenuSpecs());
-            }
-            set
-            {
-                _menuSpecs = value.ToList();
-            }
+            get => _menuSpecLock.DoubleCheckLock(ref _menuSpecs, LoadMenuSpecs);
+            set => _menuSpecs = value.ToList();
         }
 
         protected static IEnumerable<MenuSpecs> LoadMenuSpecs()

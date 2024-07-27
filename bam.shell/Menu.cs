@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bam.Testing.Menu
+namespace Bam.Test.Menu
 {
     public class Menu : IMenu
     {

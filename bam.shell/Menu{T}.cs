@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static Bam.Analytics.Diff;
 
-namespace Bam.Testing.Menu
+namespace Bam.Test.Menu
 {
     public class Menu<TAttr> : Menu, IMenu<TAttr> where TAttr : Attribute
     {
