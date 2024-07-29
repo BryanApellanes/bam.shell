@@ -1,4 +1,5 @@
 ﻿using Bam.Console;
+using Bam.Shell;
 
 namespace Bam.Application
 {
@@ -7,7 +8,7 @@ namespace Bam.Application
     {
         static void Main(string[] args)
         {
-            BamConsoleContext.Main(args);
+            BamConsoleContext.StaticMain(args);
         }
     }
 }

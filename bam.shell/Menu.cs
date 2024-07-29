@@ -27,7 +27,7 @@ namespace Bam.Test.Menu
             this.MenuItemSelector = menuItemSelector;
             this.MenuItemRunner = menuItemRunner;
             this.MenuItemProvider = menuItemProvider;            
-            this.ExitKey = MenuManager.DefaultExitKey;
+            this.ExitKey = MenuManager.ExitKey;
 
             this.MenuItemSelector.MenuItemSelectionChanged += (sender, args) => this.MenuItemSelectionChanged?.Invoke(sender, args);
         }

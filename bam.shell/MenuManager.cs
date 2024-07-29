@@ -6,17 +6,14 @@ namespace Bam.Shell
 {
     public class MenuManager : IMenuManager
     {
-        public MenuManager(IMenuRenderer menuRenderer, IMenuHeaderRenderer menuHeaderRenderer, IMenuFooterRenderer menuFooterRenderer, IMenuProvider menuProvider, IMenuInputReader menuInputReader,  IMenuInputCommandInterpreter menuInputCommandInterpreter, IMenuItemRunner menuItemRunner, IMenuItemRunResultRenderer menuItemRunResultRenderer, IInputCommandResultRenderer inputCommandResultRenderer)
+        public MenuManager(IMenuRenderer menuRenderer, IMenuProvider menuProvider, IMenuInputReader menuInputReader,  IMenuInputCommandInterpreter menuInputCommandInterpreter, IMenuItemRunResultRenderer menuItemRunResultRenderer, IInputCommandResultRenderer inputCommandResultRenderer)
         {
             this.MenusBySelector = new Dictionary<string, IMenu>();
             this.Menus = new List<IMenu>();
             this.MenuRenderer = menuRenderer;
-            this.MenuHeaderRenderer = menuHeaderRenderer;
-            this.MenuFooterRenderer = menuFooterRenderer;
             this.MenuProvider = menuProvider;
             this.MenuInputReader = menuInputReader;
             this.MenuInputCommandInterpreter = menuInputCommandInterpreter;
-            this.MenuItemRunner = menuItemRunner;
             this.MenuItemRunResultRenderer = menuItemRunResultRenderer;
             this.InputCommandResultRenderer = inputCommandResultRenderer;
 
@@ -28,19 +25,29 @@ namespace Bam.Shell
         {
             Log.Warn("Duplicate menu selectors specified: [:{0}] ({1}) and [:{2}] ({3})", e.FirstMenu.Selector, e.FirstMenu.Name, e.SecondMenu.Selector, e.SecondMenu.Name);
         }
+        
+        public static MenuManager FromOptions(IMenuOptions options)
+        {
+            return new MenuManager(options.MenuRenderer,
 
+                options.MenuProvider,
+                options.MenuInputReader,
+                options.MenuInputCommandInterpreter,
+                options.MenuItemRunResultRenderer,
+                options.InputCommandResultRenderer);
+        }
+        
         public event EventHandler<MenuEventArgs> MenuItemSelected;
         public event EventHandler<MenuManagerUpdateStateEventArgs> StateUpdating;
         public event EventHandler<MenuManagerUpdateStateEventArgs> StateUpdated;
         public event EventHandler<DuplicateMenuSelectorEventArgs> DuplicateMenuSelectorSpecified;
         protected IMenuRenderer MenuRenderer { get; set; }
-        protected IMenuHeaderRenderer MenuHeaderRenderer { get; set; }
-        protected IMenuFooterRenderer MenuFooterRenderer { get; set; }
+
 
         protected IMenuProvider MenuProvider { get; set; }
         protected IMenuInputReader MenuInputReader { get; set; }
         protected IMenuInputCommandInterpreter MenuInputCommandInterpreter { get; set; }
-        protected IMenuItemRunner MenuItemRunner { get; set; }
+
         protected IMenuItemRunResultRenderer MenuItemRunResultRenderer { get; set; }
         protected IInputCommandResultRenderer InputCommandResultRenderer { get; set; }
 
@@ -89,16 +96,10 @@ namespace Bam.Shell
         }
 
         static ConsoleKey _exitKey = ConsoleKey.Escape;
-        public static ConsoleKey DefaultExitKey
+        public static ConsoleKey ExitKey
         {
-            get
-            {
-                return _exitKey;
-            }
-            set
-            {
-                _exitKey = value;
-            }
+            get => _exitKey;
+            set => _exitKey = value;
         }
 
         IMenu? _currentMenu;

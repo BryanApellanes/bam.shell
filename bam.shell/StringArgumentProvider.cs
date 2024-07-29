@@ -13,7 +13,7 @@ namespace Bam.Shell
         {
             if(parameter.ParameterType != typeof(string))
             {
-                throw new ArgumentException($"This parameter provider only supports strings: specified parameter type was {parameter.ParameterType.Name}");
+                throw new ArgumentException($"This argument provider only supports strings: specified parameter type was {parameter.ParameterType.Name}");
             }
 
             return input;
