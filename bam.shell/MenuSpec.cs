@@ -27,7 +27,6 @@ namespace Bam.Shell
         {
             if(obj == null) return false;
             if(obj == this) return true;
-            if(this == null) return false;
             if(obj is MenuSpec menuSpec)
             {
                 return menuSpec.ContainerType == ContainerType && menuSpec.ItemAttributeType == ItemAttributeType;
