@@ -14,7 +14,7 @@ namespace Bam.Shell
         StringBuilder Input { get; }
 
         /// <summary>
-        /// Gets a value indicating whether the disgnated exit key was pressed, the default is the escape key.
+        /// Gets a value indicating whether the designated exit key was pressed, the default exit key is `escape`.
         /// </summary>
         bool Exit { get; }
 
