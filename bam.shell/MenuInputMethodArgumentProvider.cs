@@ -19,8 +19,8 @@ namespace Bam.Shell
 
         public virtual object?[] GetMethodArguments(IMenuItem menuItem, IMenuInput menuInput)
         {
-            Args.ThrowIfNull(menuItem, "menuItem");
-            Args.ThrowIfNull(menuInput, "menuInput");
+            Args.ThrowIfNull(menuItem, nameof(menuItem));
+            Args.ThrowIfNull(menuInput, nameof(menuInput));
 
             ParameterInfo[] parameterInfos = menuItem.MethodInfo.GetParameters();
 
