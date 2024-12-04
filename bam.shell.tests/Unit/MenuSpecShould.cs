@@ -22,10 +22,5 @@ namespace Bam.Shell.Tests.Unit
             MenuSpec testTwo = new MenuSpec(typeof(MenuSpecShould), typeof(UnitTest));
             testOne.Equals(testTwo).ShouldBeTrue("MenuSpecs should have been equal");
         }
-
-        public override ServiceRegistry Configure(ServiceRegistry serviceRegistry)
-        {
-            return base.Configure(serviceRegistry);
-        }
     }
 }
