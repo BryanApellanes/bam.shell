@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Bam.Shell
 {
     /// <summary>
-    /// Used to addorn a method that is included in a command menu.
+    /// Used to adorn a method that is included in a menu.
     /// </summary>
     [AttributeUsage(AttributeTargets.Method)]
     public class MenuItemAttribute : Attribute
