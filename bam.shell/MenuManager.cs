@@ -1,5 +1,4 @@
-﻿using Bam;
-using Bam.Logging;
+﻿using Bam.Logging;
 using System.Reflection;
 
 namespace Bam.Shell

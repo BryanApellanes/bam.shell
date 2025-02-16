@@ -1,11 +1,5 @@
-﻿using Bam;
-using Bam.Test.Menu;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Bam.Test.Menu;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Bam.Shell
 {

@@ -1,5 +1,4 @@
 ﻿using Bam.Console;
-using Bam.Shell;
 
 namespace Bam.Application
 {
