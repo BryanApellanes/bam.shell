@@ -50,13 +50,20 @@ namespace Bam.Shell
         protected IMenuItemRunResultRenderer MenuItemRunResultRenderer { get; set; }
         protected IInputCommandResultRenderer InputCommandResultRenderer { get; set; }
 
+        private bool _settingCurrentMenu;
+
         private void SetMenuIndex()
         {
-            if (CurrentMenu != null)
+            if (_settingCurrentMenu)
+            {
+                return;
+            }
+
+            if (_currentMenu != null)
             {
                 for (int i = 0; i < Menus.Count; i++)
                 {
-                    if (Menus[i] == CurrentMenu)
+                    if (Menus[i] == _currentMenu)
                     {
                         CurrentMenuIndex = i;
                         break;
@@ -102,23 +109,31 @@ namespace Bam.Shell
         }
 
         IMenu? _currentMenu;
-        public IMenu? CurrentMenu 
+        public IMenu? CurrentMenu
         {
             get
             {
                 if(_currentMenu == null)
                 {
-                    if (Menus.Any())
+                    _settingCurrentMenu = true;
+                    try
                     {
-                        _currentMenu = Menus.FirstOrDefault();
-                    }
-                    else
-                    {
-                        _currentMenu = MenuProvider.GetDefaultMenu();
-                        if(_currentMenu != null)
+                        if (Menus.Any())
                         {
-                            AddMenu(_currentMenu);
+                            _currentMenu = Menus.FirstOrDefault();
                         }
+                        else
+                        {
+                            _currentMenu = MenuProvider.GetDefaultMenu();
+                            if(_currentMenu != null)
+                            {
+                                AddMenu(_currentMenu);
+                            }
+                        }
+                    }
+                    finally
+                    {
+                        _settingCurrentMenu = false;
                     }
                     SetMenuIndex();
                 }

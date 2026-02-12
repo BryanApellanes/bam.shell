@@ -108,40 +108,41 @@
 
         protected void Loop(IMenuInputReader menuInputReader, IMenuInput menuInput)
         {
-            this.MenuInput = menuInput;
-            this.MenuManager.RerenderMenu(menuInput);
-            if (menuInput.Enter)
+            while (true)
             {
-                if (this.MenuInputCommandInterpreter.InterpretInput(this.MenuManager, menuInput, out IInputCommandResults interpreterResult))
+                this.MenuInput = menuInput;
+                this.MenuManager.RerenderMenu(menuInput);
+                if (menuInput.Enter)
                 {
-                    foreach(IInputCommandResult? commandResult in interpreterResult.Results)
+                    if (this.MenuInputCommandInterpreter.InterpretInput(this.MenuManager, menuInput, out IInputCommandResults interpreterResult))
                     {
-                        if (commandResult != null)
+                        foreach(IInputCommandResult? commandResult in interpreterResult.Results)
+                        {
+                            if (commandResult != null)
+                            {
+                                menuInput.Input.Clear();
+                                InputCommandResultRenderer.RenderInputCommandResult(commandResult);
+                                this.MenuRenderer.RenderDivider();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        IMenuItemRunResult? menuItemRunResult = this.MenuManager.RunMenuItem(menuInput);
+                        if (menuItemRunResult != null)
                         {
                             menuInput.Input.Clear();
-                            InputCommandResultRenderer.RenderInputCommandResult(commandResult);
+                            MenuItemRunResultRenderer.RenderMenuItemRunResult(menuItemRunResult);
                             this.MenuRenderer.RenderDivider();
                         }
                     }
                 }
-                else
+                if(menuInput.Exit)
                 {
-                    IMenuItemRunResult? menuItemRunResult = this.MenuManager.RunMenuItem(menuInput);
-                    if (menuItemRunResult != null)
-                    {
-                        menuInput.Input.Clear();
-                        MenuItemRunResultRenderer.RenderMenuItemRunResult(menuItemRunResult);
-                        this.MenuRenderer.RenderDivider();
-                    }
+                    End(menuInputReader);
+                    return;
                 }
-            }
-            if(menuInput.Exit)
-            {
-                End(menuInputReader);
-            }
-            else
-            {
-                Loop(menuInputReader, ReadInput(menuInputReader));
+                menuInput = ReadInput(menuInputReader);
             }
         }
         protected IMenuInput ReadInput(IMenuInputReader inputReader)
