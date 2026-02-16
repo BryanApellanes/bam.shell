@@ -2,8 +2,19 @@
 
 namespace Bam.Test.Menu
 {
+    /// <summary>
+    /// A strongly-typed menu implementation whose items are identified by the specified attribute type.
+    /// </summary>
+    /// <typeparam name="TAttr">The attribute type used to identify menu items.</typeparam>
     public class Menu<TAttr> : Menu, IMenu<TAttr> where TAttr : Attribute
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Menu{TAttr}"/> class.
+        /// </summary>
+        /// <param name="type">The container type that holds menu item methods.</param>
+        /// <param name="menuItemProvider">The provider used to discover menu items.</param>
+        /// <param name="menuItemSelector">The selector used to select menu items.</param>
+        /// <param name="menuItemRunner">The runner used to execute menu items.</param>
         public Menu(Type type, IMenuItemProvider menuItemProvider, IMenuItemSelector menuItemSelector, IMenuItemRunner menuItemRunner) : base(type, typeof(TAttr), menuItemProvider, menuItemSelector, menuItemRunner)
         {
             this.MenuItemProvider = new MenuItemProvider<TAttr>();
@@ -19,6 +30,9 @@ namespace Bam.Test.Menu
             return items;
         }
 
+        /// <summary>
+        /// Gets or sets the strongly-typed menu item provider.
+        /// </summary>
         protected new IMenuItemProvider<TAttr> MenuItemProvider
         {
             get;
@@ -26,6 +40,10 @@ namespace Bam.Test.Menu
         }
 
         IEnumerable<IMenuItem<TAttr>> _items;
+
+        /// <summary>
+        /// Gets the collection of strongly-typed menu items, lazily initialized.
+        /// </summary>
         public new IEnumerable<IMenuItem<TAttr>> Items
         {
             get
