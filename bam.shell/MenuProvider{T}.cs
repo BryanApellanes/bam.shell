@@ -25,14 +25,14 @@ namespace Bam.Shell
         }
 
         /// <inheritdoc/>
-        public override IEnumerable<IMenu> GetMenus(Assembly assembly)
+        public override IEnumerable<IMenu> GetMenus(Assembly? assembly)
         {
             if (assembly == null)
             {
                 return new List<IMenu>();
             }
 
-            return GetMenus<TAttr>(assembly);
+            return GetMenus<TAttr>(assembly!);
         }
     }
 }

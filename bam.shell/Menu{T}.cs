@@ -39,7 +39,7 @@ namespace Bam.Test.Menu
             set;
         }
 
-        IEnumerable<IMenuItem<TAttr>> _items;
+        IEnumerable<IMenuItem<TAttr>> _items = null!;
 
         /// <summary>
         /// Gets the collection of strongly-typed menu items, lazily initialized.
@@ -57,68 +57,68 @@ namespace Bam.Test.Menu
             }
         }
 
-        protected static new string GetDisplayName(Type type)
+        protected static string GetDisplayName(Type type)
         {
             Args.ThrowIfNull(type, nameof(type));
 
             string displayName = type.Name;
             if (type.HasCustomAttributeOfType(out TAttr attr))
             {
-                if (attr.TryGetPropertyValue("DisplayName", type.Name, out string name))
+                if (attr.TryGetPropertyValue("DisplayName", type.Name, out string? name))
                 {
-                    displayName = name;
-                }            
+                    displayName = name!;
+                }
             }
 
-            return displayName;
+            return displayName!;
         }
 
-        protected static new string GetSelector(Type type)
+        protected static string GetSelector(Type type)
         {
             Args.ThrowIfNull(type, nameof(type));
 
             string selector = type.Name;
             if(type.HasCustomAttributeOfType(out TAttr attr))
             {
-                if(attr.TryGetPropertyValue("Selector", type.Name, out string s))
+                if(attr.TryGetPropertyValue("Selector", type.Name, out string? s))
                 {
-                    selector = s;
+                    selector = s!;
                 }
             }
 
-            return selector;
+            return selector!;
         }
 
-        protected static new string GetHeaderText(Type type)
+        protected static string GetHeaderText(Type type)
         {
             Args.ThrowIfNull(type, nameof(type));
 
             string header = string.Empty;
             if(type.HasCustomAttributeOfType(out TAttr attr))
             {
-                if(attr.TryGetPropertyValue("Header", string.Empty, out string text))
+                if(attr.TryGetPropertyValue("Header", string.Empty, out string? text))
                 {
-                    header = text;
+                    header = text!;
                 }
             }
 
-            return header;
+            return header!;
         }
 
-        protected static new string GetFooterText(Type type)
+        protected static string GetFooterText(Type type)
         {
             Args.ThrowIfNull(type, nameof(type));
 
             string footer = string.Empty;
             if (type.HasCustomAttributeOfType(out TAttr attr))
             {
-                if (attr.TryGetPropertyValue("Footer", string.Empty, out string text))
+                if (attr.TryGetPropertyValue("Footer", string.Empty, out string? footerText))
                 {
-                    footer = text;
+                    footer = footerText!;
                 }
             }
 
-            return footer;
+            return footer!;
         }
     }
 }

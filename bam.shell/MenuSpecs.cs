@@ -74,7 +74,7 @@ namespace Bam.Shell
             return this;
         }
 
-        static IEnumerable<MenuSpecs> _menuSpecs;
+        static IEnumerable<MenuSpecs> _menuSpecs = null!;
         static readonly object _menuSpecLock = new object();
         /// <summary>
         /// Gets or sets a list of <see cref="MenuSpecs" /> to load.

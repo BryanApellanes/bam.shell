@@ -35,7 +35,7 @@ namespace Bam.Shell
         /// <summary>
         /// Occurs when two menus are registered with the same selector.
         /// </summary>
-        public event EventHandler<DuplicateMenuSelectorEventArgs> DuplicateMenuSelectorSpecified;
+        public event EventHandler<DuplicateMenuSelectorEventArgs> DuplicateMenuSelectorSpecified = null!;
         private void AddMenu(IMenu menu)
         {
             if (menusBySelector.ContainsKey(menu.Selector))
@@ -106,14 +106,14 @@ namespace Bam.Shell
         /// </summary>
         /// <param name="selector">The selector string identifying the menu.</param>
         /// <returns>The matching menu, or null if not found.</returns>
-        public IMenu? GetMenu(string selector)
+        public IMenu GetMenu(string selector)
         {
             if (menusBySelector.ContainsKey(selector))
             {
                 return menusBySelector[selector];
             }
 
-            return null;
+            return null!;
         }
 
         /// <summary>

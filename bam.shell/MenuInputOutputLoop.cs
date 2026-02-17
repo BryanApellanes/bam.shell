@@ -76,7 +76,7 @@
         {
             get;
             set;
-        }
+        } = null!;
 
         /// <summary>
         /// Gets the menu manager that owns this input/output loop.
@@ -90,32 +90,34 @@
         /// <summary>
         /// Occurs when the input/output loop is starting.
         /// </summary>
-        public event EventHandler<MenuInputOutputLoopEventArgs> Starting;
+        public event EventHandler<MenuInputOutputLoopEventArgs> Starting = null!;
 
         /// <summary>
         /// Occurs when reading input has completed.
         /// </summary>
-        public event EventHandler<MenuInputOutputLoopEventArgs> ReadingInputComplete;
+        public event EventHandler<MenuInputOutputLoopEventArgs> ReadingInputComplete = null!;
 
         /// <summary>
         /// Occurs when input is being processed.
         /// </summary>
-        public event EventHandler<MenuInputOutputLoopEventArgs> ProcessingInput;
+#pragma warning disable CS0414 // Field is assigned but its value is never used
+        public event EventHandler<MenuInputOutputLoopEventArgs> ProcessingInput = null!;
+#pragma warning restore CS0414
 
         /// <summary>
         /// Occurs when the input/output loop is ending.
         /// </summary>
-        public event EventHandler<MenuInputOutputLoopEventArgs> Ending;
+        public event EventHandler<MenuInputOutputLoopEventArgs> Ending = null!;
 
         /// <summary>
         /// Occurs when a menu item begins executing.
         /// </summary>
-        public event EventHandler<MenuItemRunEventArgs> MenuItemRunStarted;
+        public event EventHandler<MenuItemRunEventArgs> MenuItemRunStarted = null!;
 
         /// <summary>
         /// Occurs when a menu item has finished executing.
         /// </summary>
-        public event EventHandler<MenuItemRunEventArgs> MenuItemRunComplete;
+        public event EventHandler<MenuItemRunEventArgs> MenuItemRunComplete = null!;
 
         /// <summary>
         /// Ends the input/output loop using the current input reader.

@@ -7,7 +7,7 @@ namespace Bam.Shell
     /// </summary>
     public class MenuInput : IMenuInput
     {
-        static MenuInput _instance;
+        static MenuInput _instance = null!;
         static object _instanceLock = new object();
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace Bam.Shell
         {
             get;
             set;
-        }
+        } = null!;
 
         /// <inheritdoc/>
         public bool Exit
@@ -88,14 +88,14 @@ namespace Bam.Shell
         {
             get;
             set;
-        }
+        } = null!;
 
         /// <inheritdoc/>
         public string Selector
         {
             get;
             set;
-        }
+        } = null!;
 
         /// <inheritdoc/>
         public int ItemNumber

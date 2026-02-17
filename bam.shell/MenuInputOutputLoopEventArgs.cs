@@ -13,16 +13,16 @@
         /// <summary>
         /// Gets or sets the input/output loop that raised the event.
         /// </summary>
-        public IMenuInputOutputLoop MenuInputOutputLoop { get; set; }
+        public IMenuInputOutputLoop MenuInputOutputLoop { get; set; } = null!;
 
         /// <summary>
         /// Gets or sets the input reader associated with the event.
         /// </summary>
-        public IMenuInputReader MenuInputReader { get; set; }
+        public IMenuInputReader MenuInputReader { get; set; } = null!;
 
         /// <summary>
         /// Gets or sets the menu input associated with the event.
         /// </summary>
-        public IMenuInput MenuInput { get; set; }
+        public IMenuInput MenuInput { get; set; } = null!;
     }
 }

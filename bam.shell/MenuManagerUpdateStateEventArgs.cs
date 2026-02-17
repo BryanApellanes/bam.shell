@@ -13,12 +13,12 @@
         /// <summary>
         /// Gets or sets the menu associated with the state update.
         /// </summary>
-        public IMenu Menu { get; set; }
+        public IMenu Menu { get; set; } = null!;
 
         /// <summary>
         /// Gets or sets the input that triggered the state update.
         /// </summary>
-        public IMenuInput MenuInput { get; set; }
+        public IMenuInput MenuInput { get; set; } = null!;
 
         /// <summary>
         /// Gets the currently selected menu item from the menu, if any.

@@ -56,22 +56,24 @@ namespace Bam.Shell
         /// <summary>
         /// Occurs when a menu item is selected.
         /// </summary>
-        public event EventHandler<MenuEventArgs> MenuItemSelected;
+#pragma warning disable CS0414 // Field is assigned but its value is never used
+        public event EventHandler<MenuEventArgs> MenuItemSelected = null!;
+#pragma warning restore CS0414
 
         /// <summary>
         /// Occurs before the menu manager state is updated in response to input.
         /// </summary>
-        public event EventHandler<MenuManagerUpdateStateEventArgs> StateUpdating;
+        public event EventHandler<MenuManagerUpdateStateEventArgs> StateUpdating = null!;
 
         /// <summary>
         /// Occurs after the menu manager state has been updated in response to input.
         /// </summary>
-        public event EventHandler<MenuManagerUpdateStateEventArgs> StateUpdated;
+        public event EventHandler<MenuManagerUpdateStateEventArgs> StateUpdated = null!;
 
         /// <summary>
         /// Occurs when two menus are registered with the same selector.
         /// </summary>
-        public event EventHandler<DuplicateMenuSelectorEventArgs> DuplicateMenuSelectorSpecified;
+        public event EventHandler<DuplicateMenuSelectorEventArgs> DuplicateMenuSelectorSpecified = null!;
         /// <summary>
         /// Gets or sets the menu renderer.
         /// </summary>
@@ -509,13 +511,13 @@ namespace Bam.Shell
 
             StateUpdating?.Invoke(this, new MenuManagerUpdateStateEventArgs
             {
-                Menu = menu,
-                MenuInput = menuInput                
-            });            
+                Menu = menu!,
+                MenuInput = menuInput
+            });
 
             StateUpdated?.Invoke(this, new MenuManagerUpdateStateEventArgs
             {
-                Menu = menu,
+                Menu = menu!,
                 MenuInput = menuInput
             });
         }

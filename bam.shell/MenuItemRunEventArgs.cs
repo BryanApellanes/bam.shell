@@ -13,21 +13,21 @@
         /// <summary>
         /// Gets or sets the menu containing the item that was run.
         /// </summary>
-        public IMenu Menu { get; set; }
+        public IMenu Menu { get; set; } = null!;
 
         /// <summary>
         /// Gets or sets the menu item that was run.
         /// </summary>
-        public IMenuItem MenuItem { get; set; }
+        public IMenuItem MenuItem { get; set; } = null!;
 
         /// <summary>
         /// Gets or sets the input that was provided when running the menu item.
         /// </summary>
-        public IMenuInput MenuInput { get; set; }
+        public IMenuInput MenuInput { get; set; } = null!;
 
         /// <summary>
         /// Gets or sets the result of running the menu item.
         /// </summary>
-        public IMenuItemRunResult Result { get; set; }
+        public IMenuItemRunResult Result { get; set; } = null!;
     }
 }

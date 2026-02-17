@@ -8,7 +8,7 @@
         /// <summary>
         /// Occurs when the selected menu item changes.
         /// </summary>
-        public event EventHandler<MenuEventArgs> MenuItemSelectionChanged;
+        public event EventHandler<MenuEventArgs> MenuItemSelectionChanged = null!;
 
         /// <summary>
         /// Selects a menu item within the specified menu based on the given input.

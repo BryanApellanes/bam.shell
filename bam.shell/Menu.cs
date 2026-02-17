@@ -46,22 +46,22 @@ namespace Bam.Test.Menu
         /// <summary>
         /// Occurs when a menu item is selected.
         /// </summary>
-        public event EventHandler<MenuEventArgs> MenuItemSelected;
+        public event EventHandler<MenuEventArgs> MenuItemSelected = null!;
 
         /// <summary>
         /// Occurs when the selected menu item changes.
         /// </summary>
-        public event EventHandler<MenuEventArgs> MenuItemSelectionChanged;
+        public event EventHandler<MenuEventArgs> MenuItemSelectionChanged = null!;
 
         /// <summary>
         /// Occurs when a menu item begins executing.
         /// </summary>
-        public event EventHandler<MenuItemRunEventArgs> MenuItemRunStarted;
+        public event EventHandler<MenuItemRunEventArgs> MenuItemRunStarted = null!;
 
         /// <summary>
         /// Occurs when a menu item has finished executing.
         /// </summary>
-        public event EventHandler<MenuItemRunEventArgs> MenuItemRunComplete;
+        public event EventHandler<MenuItemRunEventArgs> MenuItemRunComplete = null!;
 
         /// <summary>
         /// Gets the menu item selector used to handle item selection.
@@ -141,11 +141,11 @@ namespace Bam.Test.Menu
             }
             if (attributes.Length == 1)
             {
-                if (attributes[0] is MenuAttribute attribute && attribute.TryGetPropertyValue(propertyName, valueIfPropertyMissing, out string value))
+                if (attributes[0] is MenuAttribute attribute && attribute.TryGetPropertyValue(propertyName, valueIfPropertyMissing, out string? value))
                 {
                     if (!string.IsNullOrEmpty(value))
                     {
-                        return value;
+                        return value!;
                     }
                     return valueIfPropertyMissing;
                 }
@@ -156,11 +156,11 @@ namespace Bam.Test.Menu
                 if (attribute is MenuAttribute menuAttribute)
                 {
                     if (menuAttribute.ItemAttributeType == itemAttributeType &&
-                        menuAttribute.TryGetPropertyValue(propertyName, valueIfPropertyMissing, out string value))
+                        menuAttribute.TryGetPropertyValue(propertyName, valueIfPropertyMissing, out string? val))
                     {
-                        if (!string.IsNullOrEmpty(value))
+                        if (!string.IsNullOrEmpty(val))
                         {
-                            return value;
+                            return val!;
                         }
                         return valueIfPropertyMissing;
                     }
@@ -270,7 +270,7 @@ namespace Bam.Test.Menu
             private set;
         }
 
-        IEnumerable<IMenuItem> _items;
+        IEnumerable<IMenuItem> _items = null!;
 
         /// <summary>
         /// Gets the collection of menu items, lazily initialized from the container type.

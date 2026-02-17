@@ -29,14 +29,14 @@
         /// <summary>
         /// Gets or sets the overall message for the results.
         /// </summary>
-        public string? Message { get; set; }
+        public string Message { get; set; } = null!;
 
         Exception? _exception;
 
         /// <summary>
         /// Gets or sets the aggregate exception from all results. If not explicitly set, aggregates exceptions from individual results.
         /// </summary>
-        public Exception? Exception
+        public Exception Exception
         {
             get
             {
@@ -51,7 +51,7 @@
                         }
                     }
                 }
-                return _exception;
+                return _exception!;
             }
             set
             {

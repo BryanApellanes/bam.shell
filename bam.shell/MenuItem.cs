@@ -44,7 +44,7 @@ namespace Bam.Shell
             set;
         }
 
-        Type _attributeType;
+        Type _attributeType = null!;
 
         /// <summary>
         /// Gets or sets the type of the attribute that decorates the menu item method.
@@ -61,7 +61,7 @@ namespace Bam.Shell
             }
             set
             {
-                _attributeType ??= value;
+                _attributeType ??= value!;
             }
         }
 
@@ -73,9 +73,9 @@ namespace Bam.Shell
             get
             {
                 string selector = string.Empty;
-                Attribute?.TryGetPropertyValue("Selector", MethodInfo.Name.CaseAcronym().ToLowerInvariant(), out selector);
+                Attribute?.TryGetPropertyValue("Selector", MethodInfo.Name.CaseAcronym().ToLowerInvariant(), out selector!);
 
-                return selector;
+                return selector!;
             }
         }
 
@@ -87,7 +87,7 @@ namespace Bam.Shell
             get
             {
                 string displayName = string.Empty;
-                Attribute?.TryGetPropertyValue("DisplayName", MethodInfo.Name, out displayName);
+                Attribute?.TryGetPropertyValue("DisplayName", MethodInfo.Name, out displayName!);
 
                 return string.IsNullOrEmpty(displayName) ? MethodInfo.Name : displayName;
             }
@@ -100,7 +100,7 @@ namespace Bam.Shell
         {
             get;
             set;
-        }
+        } = null!;
 
         /// <summary>
         /// Gets or sets a value indicating whether this menu item is currently selected.
@@ -118,7 +118,7 @@ namespace Bam.Shell
         {
             get;
             set;
-        }
+        } = null!;
 
         /// <inheritdoc/>
         public override string ToString()

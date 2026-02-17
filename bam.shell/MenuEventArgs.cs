@@ -13,7 +13,7 @@
         /// <summary>
         /// Gets or sets the menu associated with the event.
         /// </summary>
-        public IMenu Menu { get; set; }
+        public IMenu Menu { get; set; } = null!;
 
         /// <summary>
         /// Gets or sets the previously selected menu item, if applicable.

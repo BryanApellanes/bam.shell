@@ -34,36 +34,36 @@
         /// <summary>
         /// Gets the attribute type used to identify menu items within the decorated class.
         /// </summary>
-        public Type ItemAttributeType { get; protected set; }
+        public Type ItemAttributeType { get; protected set; } = null!;
 
         /// <summary>
         /// Gets or sets the name of the menu.
         /// </summary>
-        public string Name { get; set; }
+        public string Name { get; set; } = null!;
 
         /// <summary>
         /// Gets or sets the display name of the menu.
         /// </summary>
-        public string DisplayName { get; set; }
+        public string DisplayName { get; set; } = null!;
 
         /// <summary>
         /// Gets or sets the description of the menu.
         /// </summary>
-        public string Description { get; set; }
+        public string Description { get; set; } = null!;
 
         /// <summary>
         /// Gets or sets the input command value used to select the associated menu.
         /// </summary>
-        public string Selector { get; set; }
+        public string Selector { get; set; } = null!;
 
         /// <summary>
         /// Gets or sets the header text displayed above the menu.
         /// </summary>
-        public string HeaderText { get; set; }
+        public string HeaderText { get; set; } = null!;
 
         /// <summary>
         /// Gets or sets the footer text displayed below the menu.
         /// </summary>
-        public string FooterText { get; set; }
+        public string FooterText { get; set; } = null!;
     }
 }

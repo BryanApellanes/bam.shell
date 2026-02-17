@@ -33,16 +33,16 @@
         /// <summary>
         /// Gets or sets the selector string used to identify this menu item.
         /// </summary>
-        public string Selector { get; set; }
+        public string Selector { get; set; } = null!;
 
         /// <summary>
         /// Gets or sets the display name shown to the user.
         /// </summary>
-        public string DisplayName { get; set; }
+        public string DisplayName { get; set; } = null!;
 
         /// <summary>
         /// Gets or sets the description of the menu item.
         /// </summary>
-        public string Description { get; set; }
+        public string Description { get; set; } = null!;
     }
 }

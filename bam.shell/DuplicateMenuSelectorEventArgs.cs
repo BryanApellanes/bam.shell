@@ -8,11 +8,11 @@
         /// <summary>
         /// Gets or sets the first menu registered with the duplicate selector.
         /// </summary>
-        public IMenu FirstMenu { get; set; }
+        public IMenu FirstMenu { get; set; } = null!;
 
         /// <summary>
         /// Gets or sets the second menu registered with the duplicate selector.
         /// </summary>
-        public IMenu SecondMenu { get; set;}
+        public IMenu SecondMenu { get; set;} = null!;
     }
 }

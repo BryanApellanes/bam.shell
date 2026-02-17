@@ -46,7 +46,7 @@
         /// <returns>This instance for fluent chaining.</returns>
         public MenuInputCommandInterpreterResult AddResult(IInputCommandResult? result)
         {
-            menuItemRunResults.Add(result);
+            menuItemRunResults.Add(result!);
             return this;
         }
     }

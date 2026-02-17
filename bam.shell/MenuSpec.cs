@@ -32,12 +32,12 @@
         /// <summary>
         /// Gets or sets the type that contains menu item methods.
         /// </summary>
-        public Type ContainerType { get; set; }
+        public Type ContainerType { get; set; } = null!;
 
         /// <summary>
         /// Gets or sets the attribute type used to identify menu items.
         /// </summary>
-        public Type ItemAttributeType { get; set; }
+        public Type ItemAttributeType { get; set; } = null!;
 
         /// <inheritdoc/>
         public override bool Equals(object? obj)

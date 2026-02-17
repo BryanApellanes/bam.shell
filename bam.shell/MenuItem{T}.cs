@@ -63,7 +63,7 @@ namespace Bam.Shell
             }
         }
 
-        Type _attributeType;
+        Type _attributeType = null!;
 
         /// <inheritdoc/>
         public override Type? AttributeType
@@ -78,7 +78,7 @@ namespace Bam.Shell
             }
             set
             {
-                _attributeType ??= value;
+                _attributeType ??= value!;
             }
         }
     }
