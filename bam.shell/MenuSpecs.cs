@@ -123,27 +123,40 @@ namespace Bam.Shell
         }
 
         /// <summary>
-        /// Scan the specified assembly for <see cref="MenuSpecs" />.
+        /// Scan the specified assembly for <see cref="MenuSpecs" />. Item attribute types are seeded from each
+        /// container's <see cref="MenuAttribute.ItemAttributeType"/> (set by <see cref="MenuAttribute{TAttr}"/>,
+        /// e.g. a console menu declaring its items as console commands), in addition to any
+        /// <see cref="MenuItemAttribute"/>-decorated methods — so containers whose methods carry only the
+        /// declared item attribute still yield a menu.
         /// </summary>
-        /// <param name="assembly"></param>
-        /// <returns></returns>
+        /// <param name="assembly">The assembly to scan.</param>
+        /// <returns>An enumerable of discovered menu specifications.</returns>
         public static IEnumerable<MenuSpecs> Scan(Assembly assembly)
         {
             Dictionary<Type, MenuSpecs> specsByContainer = new Dictionary<Type, MenuSpecs>();
             foreach(Type menuContainer in FindMenuTypes(assembly))
             {
+                if(!specsByContainer.ContainsKey(menuContainer))
+                {
+                    specsByContainer.Add(menuContainer, new MenuSpecs(menuContainer));
+                }
+                MenuSpecs specs = specsByContainer[menuContainer];
+
+                foreach(MenuAttribute menuAttribute in menuContainer.GetCustomAttributes<MenuAttribute>())
+                {
+                    if (menuAttribute.ItemAttributeType != null)
+                    {
+                        specs.AddItemAttributeType(menuAttribute.ItemAttributeType);
+                    }
+                }
+
                 foreach(MethodInfo method in menuContainer.GetMethods())
                 {
-                    if(!specsByContainer.ContainsKey(menuContainer))
-                    {
-                        specsByContainer.Add(menuContainer, new MenuSpecs(menuContainer));
-                    }
-
                     foreach(object attribute in method.GetCustomAttributes())
                     {
                         if (attribute is MenuItemAttribute)
                         {
-                            specsByContainer[menuContainer].AddItemAttributeType(attribute.GetType());
+                            specs.AddItemAttributeType(attribute.GetType());
                         }
                     }
                 }
